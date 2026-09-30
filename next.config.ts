@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
+  // Local dev: allow requests from LAN IP
+  allowedDevOrigins: ["192.168.1.189"],
 };
 
 export default nextConfig;

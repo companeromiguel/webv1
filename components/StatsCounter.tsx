@@ -17,7 +17,7 @@ const stats: Stat[] = [
   // City geography, not a claim about TMCWD service coverage.
   // Source: https://trecemartirescity.gov.ph/history/
   { value: 13,    suffix: "",   label: "Barangays in Trece Martires City" },
-  { value: 24000, suffix: "+",  label: "Active Connections" },
+  { value: 32000, suffix: "+",  label: "Active Connections" },
   { value: 24,    suffix: "/7", label: "Emergency Response" },
 ];
 

@@ -1,12 +1,12 @@
-/* ── Floating root — fixed, just above the Back to Top button ───────── */
+/* ── Floating root ───────────────────────────────────────────────── */
 .root {
   position: fixed;
   right: 40px;
-  bottom: 96px; /* sits above the 46px Back to Top button + its 40px bottom offset */
+  bottom: 96px;
   z-index: 45;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   gap: 8px;
 }
 
@@ -14,30 +14,38 @@
   .root { right: 20px; bottom: 76px; }
 }
 
-/* ── Trigger button ─────────────────────────────────────────────────── */
+/* ── Trigger button ─────────────────────────────────────────────── */
 .trigger {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   padding: 0;
-  border: 1px solid rgba(130, 207, 247, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.6);
   border-radius: 50%;
-  background: rgba(45, 153, 215, 0.34);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  backdrop-filter: blur(14px) saturate(160%);
-  box-shadow: 0 8px 30px rgba(36, 104, 145, 0.2), inset 0 1px 0 rgba(255,255,255,0.45);
+  background: #0591d4;
+  box-shadow:
+    0 4px 16px rgba(5, 145, 212, 0.55),
+    0 8px 32px rgba(5, 145, 212, 0.3),
+    inset 0 1px 0 rgba(255,255,255,0.35);
   color: #fff;
   cursor: pointer;
-  transition: background 200ms, box-shadow 200ms;
+  transition: background 200ms, box-shadow 200ms, transform 150ms;
 }
 
-.trigger svg { width: 22px; height: 22px; }
-.trigger:hover { background: rgba(45, 153, 215, 0.55); box-shadow: 0 10px 32px rgba(36,104,145,0.3), inset 0 1px 0 rgba(255,255,255,0.55); }
-.trigger:focus-visible { outline: 2px solid #0591d4; outline-offset: 5px; }
-.triggerActive { border-color: #ffe293; background: rgba(45, 153, 215, 0.5); }
+.trigger svg { width: 26px; height: 26px; }
+.trigger:hover {
+  background: #0578b0;
+  box-shadow:
+    0 6px 20px rgba(5, 145, 212, 0.65),
+    0 10px 36px rgba(5, 145, 212, 0.35),
+    inset 0 1px 0 rgba(255,255,255,0.4);
+  transform: scale(1.06);
+}
+.trigger:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 0 5px #0591d4; }
+.triggerActive { border-color: #ffe293; background: #0578b0; }
 
 /* Active dot indicator */
 .dot {
@@ -51,17 +59,16 @@
   border: 1.5px solid rgba(255,255,255,0.7);
 }
 
-/* ── Panel — opens upward above the button ──────────────────────────── */
+/* ── Panel ──────────────────────────────────────────────────────── */
 .panel {
-  width: 240px;
-  background: #fff;
-  border: 1px solid #e0edf5;
+  width: 260px;
+  background: #ffffff;
+  border: 1px solid #e2edf5;
   border-radius: 14px;
-  box-shadow: 0 16px 48px rgba(6, 46, 87, 0.14), 0 2px 8px rgba(0,0,0,0.06);
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  box-shadow:
+    0 20px 60px rgba(6, 46, 87, 0.18),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
   /* stack above the trigger */
   order: -1;
   animation: a11y-panel-in 180ms cubic-bezier(.22,1,.36,1) both;
@@ -76,68 +83,185 @@
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.panelHeader { display: flex; align-items: center; justify-content: space-between; }
-.panelTitle  { font-size: 13px; font-weight: 700; color: #0d3d5e; letter-spacing: .01em; }
+/* ── Panel header ───────────────────────────────────────────────── */
+.panelHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px 12px 12px;
+  background: #ffffff;
+  border-bottom: 1px solid #e8f2f8;
+}
+
+.panelIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #0591d4;
+  color: #fff;
+  flex-shrink: 0;
+}
+.panelIconWrap svg { width: 18px; height: 18px; }
+
+.panelTitle {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0d3d5e;
+  letter-spacing: 0.01em;
+}
 
 .closeBtn {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 28px; height: 28px;
-  border: none; border-radius: 6px; background: transparent;
-  color: #6b8fa5; cursor: pointer; transition: background 150ms, color 150ms;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #8aacbe;
+  cursor: pointer;
+  transition: background 150ms, color 150ms;
+  flex-shrink: 0;
 }
 .closeBtn svg { width: 14px; height: 14px; }
 .closeBtn:hover { background: #f0f7fc; color: #0d3d5e; }
 .closeBtn:focus-visible { outline: 2px solid #0591d4; outline-offset: 2px; }
 
-/* ── Option groups ───────────────────────────────────────────────────── */
-.group  { display: flex; flex-direction: column; gap: 6px; }
-.groupLabel {
-  font-size: 10px; font-weight: 600; text-transform: uppercase;
-  letter-spacing: .1em; color: #8aacbe; margin-bottom: 2px;
+/* ── Option list ────────────────────────────────────────────────── */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
 }
-.btnRow { display: flex; gap: 6px; }
 
-.optBtn {
-  flex: 1; padding: 6px 4px; font-size: 12px; font-weight: 600;
-  border: 1.5px solid #d0e6f1; border-radius: 8px;
-  background: #f5fafd; color: #3a6880; cursor: pointer;
-  transition: background 150ms, border-color 150ms, color 150ms; line-height: 1;
+/* ── Row buttons ────────────────────────────────────────────────── */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 16px;
+  border: none;
+  background: transparent;
+  color: #1a5276;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background 130ms, color 130ms;
+  position: relative;
 }
-.optBtn:hover { background: #e4f2fa; border-color: #90c8e8; }
-.optBtn:focus-visible { outline: 2px solid #0591d4; outline-offset: 2px; }
-.optBtn.active { background: #0591d4; border-color: #0591d4; color: #fff; }
 
-/* ── Toggle ─────────────────────────────────────────────────────────── */
-.toggle { display: flex; align-items: center; justify-content: space-between; gap: 8px; cursor: pointer; }
-
-.switch {
-  position: relative; width: 36px; height: 20px;
-  border: none; border-radius: 10px; background: #d0e6f1;
-  cursor: pointer; transition: background 200ms; flex-shrink: 0; padding: 0;
+.row:hover:not(:disabled) {
+  background: #eaf5fb;
+  color: #0591d4;
 }
-.switch:focus-visible { outline: 2px solid #0591d4; outline-offset: 2px; }
-.switchOn { background: #0591d4; }
 
-.switchThumb {
-  position: absolute; top: 2px; left: 2px;
-  width: 16px; height: 16px; border-radius: 50%;
-  background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2);
-  transition: transform 200ms cubic-bezier(.22,1,.36,1); pointer-events: none;
+.row:focus-visible {
+  outline: 2px solid #0591d4;
+  outline-offset: -2px;
 }
-.switchOn .switchThumb { transform: translateX(16px); }
 
-/* ── Reset ───────────────────────────────────────────────────────────── */
-.resetBtn {
-  width: 100%; padding: 7px; font-size: 11px; font-weight: 600;
-  border: 1.5px solid #d0e6f1; border-radius: 8px;
-  background: transparent; color: #6b8fa5; cursor: pointer;
-  transition: background 150ms, color 150ms; letter-spacing: .02em;
+.row:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
 }
-.resetBtn:hover { background: #f0f7fc; color: #0d3d5e; }
-.resetBtn:focus-visible { outline: 2px solid #0591d4; outline-offset: 2px; }
 
+/* Active (toggled on) state — left accent bar */
+.rowActive {
+  color: #0591d4;
+  background: #f0f9ff;
+}
+.rowActive::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: #0591d4;
+}
+
+/* Reset row — muted styling */
+.rowReset {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 16px;
+  border: none;
+  background: transparent;
+  color: #8aacbe;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background 130ms, color 130ms;
+}
+.rowReset:hover:not(:disabled) {
+  background: #fff5f5;
+  color: #c0392b;
+}
+.rowReset:focus-visible {
+  outline: 2px solid #0591d4;
+  outline-offset: -2px;
+}
+.rowReset:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+/* ── Row icon ────────────────────────────────────────────────────── */
+.rowIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: inherit;
+}
+.rowIcon svg { width: 18px; height: 18px; }
+
+/* ── Row label ───────────────────────────────────────────────────── */
+.rowLabel {
+  flex: 1;
+}
+
+/* ── Checkmark + badge ───────────────────────────────────────────── */
+.checkmark {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0591d4;
+  margin-left: auto;
+}
+
+.badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: #0591d4;
+  color: #fff;
+  line-height: 1.4;
+  margin-left: auto;
+}
+
+/* ── Divider ─────────────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: #e8f2f8;
+  margin: 4px 0;
+}
+
+/* ── Reduced-motion overrides ────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .trigger  { transition: none; }
-  .panel    { animation: none; }
-  .switchThumb { transition: none; }
+  .trigger    { transition: none; }
+  .panel      { animation: none; }
 }

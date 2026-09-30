@@ -58,7 +58,8 @@ export default function Header() {
                 scrolled ? "text-sm" : "text-base",
               ].join(" ")}
             >
-              Trece Martires City Water District
+              <span className="hidden sm:inline">Trece Martires City Water District</span>
+              <span className="sm:hidden">TMCWD</span>
             </span>
           </Link>
 
@@ -67,7 +68,7 @@ export default function Header() {
             href="https://www.gov.ph/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:flex items-center gap-2 shrink-0 group ml-4"
+            className="flex items-center gap-2 shrink-0 group ml-4"
             aria-label="Visit gov.ph"
           >
             <Image

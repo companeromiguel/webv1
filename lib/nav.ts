@@ -46,5 +46,6 @@ export const primaryNav: NavItem[] = [
     ],
   },
   { label: "About us", href: "/about/" },
+  { label: "Contact", href: "/contact/" },
   { label: "Home",             href: "/" }
 ];

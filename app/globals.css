@@ -438,20 +438,73 @@ html {
 
 /* ── Accessibility widget — global overrides applied to <html> ──────── */
 
-/* Font size scale */
+/* Font size scale — stepped via Increase/Decrease Text */
 html.a11y-font-large  { font-size: 112%; }
 html.a11y-font-larger { font-size: 125%; }
+html.a11y-font-largest { font-size: 140%; }
+
+/* Grayscale */
+html.a11y-grayscale {
+  filter: grayscale(1);
+}
 
 /* High contrast */
 html.a11y-high-contrast {
-  --foreground: #000;
-  --background: #fff;
-  filter: contrast(1.25);
+  filter: contrast(1.5) brightness(1.05);
 }
-
 html.a11y-high-contrast body {
   background: #fff !important;
   color: #000 !important;
+}
+html.a11y-high-contrast a { color: #00008b !important; }
+html.a11y-high-contrast button { border-color: #000 !important; }
+
+/* Stack grayscale + high-contrast */
+html.a11y-grayscale.a11y-high-contrast {
+  filter: grayscale(1) contrast(1.5) brightness(1.05);
+}
+
+/* Negative contrast (invert) */
+html.a11y-negative-contrast {
+  filter: invert(1) hue-rotate(180deg);
+}
+html.a11y-negative-contrast img,
+html.a11y-negative-contrast video,
+html.a11y-negative-contrast iframe {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Light background — force very light bg with dark text */
+html.a11y-light-background body {
+  background: #fefefe !important;
+  color: #111 !important;
+}
+html.a11y-light-background *:not(img):not(video):not(iframe):not(svg):not([class*="hero"]):not([class*="header"]):not([class*="nav"]):not([class*="footer"]) {
+  background-color: transparent !important;
+  color: #111 !important;
+}
+html.a11y-light-background a { color: #0050a0 !important; }
+
+/* Links underline — force visible underline on all links */
+html.a11y-links-underline a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+}
+
+/* Readable font — swap to a high-legibility sans-serif */
+html.a11y-readable-font,
+html.a11y-readable-font body,
+html.a11y-readable-font p,
+html.a11y-readable-font span,
+html.a11y-readable-font li,
+html.a11y-readable-font a,
+html.a11y-readable-font button,
+html.a11y-readable-font input,
+html.a11y-readable-font label {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+  letter-spacing: 0.02em !important;
+  word-spacing: 0.05em !important;
+  line-height: 1.6 !important;
 }
 
 /* Reduce motion — override all transitions and animations */

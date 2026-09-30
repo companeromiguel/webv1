@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { primaryNav } from "@/lib/nav";
 
 const govLinks = [
   { label: "Office of the President",      href: "https://president.gov.ph" },
@@ -39,8 +38,8 @@ export default function Footer() {
     <footer className="bg-[#2A2A29] text-white mt-auto">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
 
-        {/* ── Main grid: Identity | Transparency | Nav + Gov links ── */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* ── Main grid: Identity | Transparency | Navigation | Government ── */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
 
           {/* Col 1–2: Identity + Contact */}
           <div className="lg:col-span-2">
@@ -89,40 +88,24 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 3: Transparency only */}
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-white/30 mb-2">
-              Transparency
-            </p>
-            <ul className="space-y-1 text-[11px] text-white/50">
-              {[
-                ["Transparency Seal", "/transparency/seal/"],
-                ["Freedom of Information", "/transparency/foi/"],
-                ["Bidding & Procurement",      "/transparency/procurement/"],
-                ["Citizen's Charter",      "/transparency/citizens-charter/"],
-                ["Financial Reports",      "/transparency/seal/#documents-1"],
-              ].map(([label, href]) => (
-                <li key={label}>
-                  <Link href={href} className="hover:text-white transition-colors">{label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Col 3–4: Transparency + Government always side by side */}
+          <div className="flex gap-8 sm:col-span-2 lg:col-span-2">
 
-          {/* Col 4: Navigation + Government Links side by side */}
-          <div className="flex gap-8">
-
-            {/* Navigation */}
+            {/* Transparency */}
             <div className="min-w-0">
               <p className="text-[10px] font-semibold uppercase tracking-widest text-white/30 mb-2">
-                Navigation
+                Transparency
               </p>
-              <ul className="space-y-1">
-                {primaryNav.map(({ label, href }) => (
+              <ul className="space-y-1 text-[11px] text-white/50">
+                {[
+                  ["Transparency Seal", "/transparency/seal/"],
+                  ["Freedom of Information", "/transparency/foi/"],
+                  ["Bidding & Procurement",      "/transparency/procurement/"],
+                  ["Citizen's Charter",      "/transparency/citizens-charter/"],
+                  ["Financial Reports",      "/transparency/seal/#documents-1"],
+                ].map(([label, href]) => (
                   <li key={label}>
-                    <Link href={href} className="text-[11px] text-white/50 hover:text-white transition-colors whitespace-nowrap">
-                      {label}
-                    </Link>
+                    <Link href={href} className="hover:text-white transition-colors">{label}</Link>
                   </li>
                 ))}
               </ul>
